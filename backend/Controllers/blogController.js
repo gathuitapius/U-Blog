@@ -4,7 +4,7 @@ import Blog from '../models/blogs.js'
 //GET a single Blog
 //CREATE a Blog
 
-const createBlog = () =>{
+export const createBlog = async ( req, res ) =>{
     const {title, blog_image, content} = req.body;
 
     try{
@@ -14,12 +14,6 @@ const createBlog = () =>{
     } catch(error){
         res.status(400).json({error: error.message})
     }
-    res.json({mssg : "CREATE new Blog"})
 }
 
 //DELETE a Blog
-
-
-exports default = {
-    createBlog,
-}

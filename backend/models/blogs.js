@@ -9,7 +9,7 @@ const blogSchema = new Schema({
         required: true 
     },
 
-    blog_mage: {
+    blog_image: {
         type :String,
         required: true
     },

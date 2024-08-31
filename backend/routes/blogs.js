@@ -1,5 +1,5 @@
 import express from 'express';
-import {createBlog} from '../controllers/blogController.js'
+import {createBlog} from '../Controllers/blogController.js'
 
 
 const router = express.Router();
@@ -17,7 +17,7 @@ router.get('/:id', (req, res) =>{
 })
 
 //create new blog
-router.post('/', CreateBlog);
+router.post('/', createBlog);
 
 //create new blog
 router.put('/:id', (req, res) =>{
