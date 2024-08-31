@@ -10,6 +10,8 @@ const port = process.env.PORT;
 
 //middleware
 
+app.use(express.json())
+
 app.use((req, res, next) =>{
     console.log(req.path, req.method);
     next();
@@ -19,7 +21,14 @@ app.use((req, res, next) =>{
 //get middleware
 app.use('/api/blogs', blogRoute)
 
-
-app.listen(port, () =>{
-    console.log("The Server is listening on port: ", port);
+mongoose.connect('mongodb://0.0.0.0:27017/blogs')
+.then(() => {
+    //Listenning for requests
+    app.listen(port, () =>{
+        console.log("Connected to DB && listening on port: ", port); 
+    })
 })
+.catch((error) => {
+    console.error(error)
+})
+
