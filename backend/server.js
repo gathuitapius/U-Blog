@@ -1,7 +1,8 @@
 import express from 'express';
 import 'dotenv/config'
 import mongoose from 'mongoose';
-import blogRoute from './routes/blogs.js';
+import userRoute from '../backend/routes/users.js'
+import blogRoute from '../backend/routes/blogs.js'
 
 
 
@@ -20,6 +21,7 @@ app.use((req, res, next) =>{
 
 //get middleware
 app.use('/api/blogs', blogRoute)
+app.use('/api/users', userRoute)
 
 mongoose.connect('mongodb://0.0.0.0:27017/blogs')
 .then(() => {

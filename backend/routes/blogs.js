@@ -1,5 +1,5 @@
 import express from 'express';
-import {createBlog, deleteAllBlogs, deleteBlog, getAllBlogs, getSingleBlog} from '../Controllers/blogController.js'
+import {createBlog, deleteAllBlogs, deleteBlog, getAllBlogs, getSingleBlog, updateBlog} from '../Controllers/blogController.js'
 
 
 const router = express.Router();
@@ -16,9 +16,7 @@ router.get('/:id', getSingleBlog)
 router.post('/', createBlog);
 
 //create new blog
-router.put('/:id', (req, res) =>{
-    res.json({mssg : "UPDATE a Blog"})
-})
+router.put('/:id', updateBlog)
 
 //delete all blogs
 router.delete('/all', deleteAllBlogs);
