@@ -1,9 +1,16 @@
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './Navbar.sass'
 import {Link} from "react-router-dom"
+
+//icons
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
+
+
 export const Navbar = () => {
     return <div className="navbar">
     <div className="logo">
+        <LibraryBooksRoundedIcon className='logoIcon'/>
         <Link to="/"> U-Blog </Link>
     </div>
 
@@ -15,6 +22,7 @@ export const Navbar = () => {
     </ul>
     </div>
     <div className="userprofile">
+        <AccountCircleRoundedIcon className='avater'/>
         <h3>Hello, User</h3>
     </div>
   
