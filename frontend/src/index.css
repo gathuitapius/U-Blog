@@ -2,3 +2,9 @@
   margin: 0;
   padding: 0;
 }
+
+:root{
+  --primary: rgb(22, 170, 84);
+  --secondart: rgb(10, 103, 131);
+  --danger: rgb(189, 68, 21);
+}

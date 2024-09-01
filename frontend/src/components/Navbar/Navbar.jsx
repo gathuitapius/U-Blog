@@ -1,19 +1,22 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './Navbar.sass'
+import {Link} from "react-router-dom"
 export const Navbar = () => {
     return <div className="navbar">
     <div className="logo">
-        U-Blog
+        <Link to="/"> U-Blog </Link>
     </div>
+
     <div className="links">
-        <ul>
-            <li>Home</li>
-            <li>Blogs</li>
-            <li>About Us</li>
-        </ul>
+    <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/blogs">Blogs</Link></li>
+        <li><Link to="/about">About</Link></li>
+    </ul>
     </div>
     <div className="userprofile">
-        Hello, User
+        <h3>Hello, User</h3>
     </div>
+  
     </div>
 }
