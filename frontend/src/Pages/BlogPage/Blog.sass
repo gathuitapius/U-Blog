@@ -1,0 +1,91 @@
+.singleBlog
+    display: flex
+    flex-direction: column
+    align-items: center
+    background-color: white
+    width: 80%
+    margin: auto
+    padding-top: 10px
+
+    .content
+        padding: 50px
+        line-height: 25px
+        font-size: 20px
+        font-family: "Roboto"
+        font-weight: 300
+        background-color: #dbcdcd
+
+        h3
+            margin-bottom: 10px
+
+        h4
+            margin-top: 20px
+            margin-bottom: 5px
+    .commentsTitle
+        display: flex
+        align-items: left
+        width: 100%
+        color: #645656
+        margin-top: 20px
+        margin-bottom: 10px
+        font-family: "Roboto", sans-serif
+
+    .comments
+        width: 100%
+        align-content: right
+
+        .comment
+            background-color: #ece3ea
+            padding: 10px
+            font-family: "Roboto", sans-serif
+            border-radius: 20px
+            margin-bottom: 10px
+            display: inline-block  // Adjust width based on content
+            max-width: 100%        // Prevent it from exceeding the parent width
+
+
+            .commentMetaData
+                display: flex
+                flex-direction: row
+                gap: 10px
+                color: #6e6666
+                margin-bottom: 10px
+                font-size: 12px
+                font-family: "Roboto", sans-serif
+
+
+                .timestamp
+                    display: flex
+                    flex-direction: row
+                    gap: 20px
+                    font-family: "Roboto", sans-serif
+
+            .commentMessage
+                padding: 5px
+                font-family: "Roboto", sans-serif
+                font-size: 14px
+
+        .inputcomment
+            display: flex
+            flex-direction: row
+            align-items: center
+            margin-bottom: 50px
+            gap: 10px
+
+
+            textarea
+                border: none
+                background-color: #d4cece
+                border-radius: 5px
+                padding: 5px
+
+            .send
+                color: #1debeb
+                border: none
+                background-color: none
+
+
+
+        
+
+

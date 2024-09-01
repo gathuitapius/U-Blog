@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar/Navbar.jsx';
 import { Footer } from './components/Footer/Footer.jsx';
 import { Blogs } from './Pages/Blogs/Blogs.jsx';
 import { About } from './Pages/About.jsx';
+import Blog from './Pages/BlogPage/Blog.jsx';
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
           <Route
           path='/about'
           element={<About/>}
+          />
+          <Route
+          path='/blog'
+          element={<Blog/>}
           />
           
         </Routes>
