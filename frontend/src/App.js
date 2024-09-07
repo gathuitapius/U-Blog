@@ -4,7 +4,7 @@ import { Home } from './Pages/Home.jsx';
 import { Navbar } from './components/Navbar/Navbar.jsx';
 import { Footer } from './components/Footer/Footer.jsx';
 import { Blogs } from './Pages/Blogs/Blogs.jsx';
-import { About } from './Pages/About.jsx';
+import { About } from './Pages/About/About.jsx';
 import Blog from './Pages/BlogPage/Blog.jsx';
 
 function App() {
