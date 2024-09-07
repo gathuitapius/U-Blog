@@ -7,13 +7,14 @@ import { useBlogsContext } from "../../hooks/useBlogsContext.jsx"
 
 
 export const Blogs = () => {
-    const [blogs, dispatch] = useBlogsContext()
+    const {blogs, dispatch} = useBlogsContext()
+    console.log("Blogs from context:", blogs);
 
     useEffect(() => {
         const getBlogs = async () => {
           try {
             const response = await axios.get("/api/blogs/");
-            if(response.ok){
+            if(response.status === 200){
                 dispatch(
                     {
                         type:"SET_BLOGS", payload: response.data
@@ -26,7 +27,7 @@ export const Blogs = () => {
           }
         };
         getBlogs();
-      }, []);
+      }, [dispatch]);
 
     return <div className="blogs">
         {blogs && blogs.length > 0 ? (blogs.map((blog) =>(
