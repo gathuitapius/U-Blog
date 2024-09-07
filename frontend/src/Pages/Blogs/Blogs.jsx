@@ -2,14 +2,24 @@ import "./Blogs.sass"
 import Blog from "../../components/Blog/Blog.jsx"
 import { useEffect, useState } from "react"
 import axios from 'axios'
+import { useBlogsContext } from "../../hooks/useBlogsContext.jsx"
+
+
+
 export const Blogs = () => {
-    const [blogs, setBlogs] = useState([])
+    const [blogs, dispatch] = useBlogsContext()
 
     useEffect(() => {
         const getBlogs = async () => {
           try {
             const response = await axios.get("/api/blogs/");
-            setBlogs(response.data);
+            if(response.ok){
+                dispatch(
+                    {
+                        type:"SET_BLOGS", payload: response.data
+                    }
+                )
+            }
             console.log("API Response:", response.data);
           } catch (error) {
             console.error("Error fetching blogs:", error);

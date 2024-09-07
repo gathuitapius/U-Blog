@@ -2,7 +2,7 @@ import { useReducer } from "react"
 import {Children, createContext} from "react"
 
 
-export const blogContext = createContext()
+export const BlogContext = createContext()
 
 export const blogReducer = (state, action) => {
     switch(action.type) {
@@ -20,14 +20,14 @@ export const blogReducer = (state, action) => {
     }
 }
 
-export const blogContextProvider = ({Children}) => { 
+export const BlogContextProvider = ({Children}) => { 
 
     const [state, dispatch] = useReducer(blogReducer, {
         blogs: null
     })
     return (
-        <blogContext.Provider value={{state, dispatch}}>
+        <BlogContext.Provider value={{...state, dispatch}}>
             {Children}
-        </blogContext.Provider>
+        </BlogContext.Provider>
     )
 }
