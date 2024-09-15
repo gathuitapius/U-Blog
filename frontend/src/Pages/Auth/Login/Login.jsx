@@ -11,20 +11,20 @@ export const Login = () => {
     const navigate = useNavigate()
 
     const handleSubmit = async (e) =>{
-        e.preventdefault()
+        e.preventDefault()
 
         try {
     
-        const user = await axios.get('/api/auth', {email, password});
+        const response = await axios.post('/api/auth/login', {email, password});
 
         // Save token in localStorage
-        localStorage.setItem("token", user.data.token);
+        localStorage.setItem("token", response.data.token);
 
         // Redirect to home page
         navigate('/')
 
     } catch (error) {
-        setError(error.user ? error.user.data.message : "Login failed");  
+        setError(error.response?.data?.message || "Login failed");
     }
 
 

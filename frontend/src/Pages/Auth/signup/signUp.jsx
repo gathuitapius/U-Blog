@@ -11,6 +11,7 @@ export const SignUp = () => {
     const [password, setPassword] = useState("")
     const [userName, setUserName] = useState("")
     const[error, setError] = useState(null)
+    const [notify, setNotify] = useState("")
     const navigate = useNavigate()
 
     const handleSubmit = async (e) =>{
@@ -26,10 +27,12 @@ export const SignUp = () => {
             setPassword("")
             setError(null)
             console.log(response.data)
+            setNotify("User Registered Successfilly!!")
             navigate("/login")
         }
                     
     } catch (error) {
+        setNotify("Error registering User!")
         setError(error.response ? error.response.data.mssg : "An unexpected error occurred");
         console.error(error);  
     }
@@ -37,6 +40,8 @@ export const SignUp = () => {
     }
     return(
         <div className="signup">
+            
+                {notify && <div className="notify">{notify}</div>}
             <h2>SignUp</h2>
             <form onSubmit={handleSubmit}>
             <div className="input">
