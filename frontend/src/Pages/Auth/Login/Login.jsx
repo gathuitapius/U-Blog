@@ -36,7 +36,7 @@ export const Login = () => {
             <form onSubmit={handleSubmit}>
             <div className="input">
                 <label>Email</label>
-                <input type="text" 
+                <input type="email" 
                 required 
                 placeholder="Enter your Email ..."
                 onChange={(e) => setEmail(e.target.value)}
@@ -53,7 +53,7 @@ export const Login = () => {
                 />
             </div>
             <div className="input">
-                <button >Login</button>
+                <button type="submit">Login</button>
             </div>
             <div className="signup-link">
                 <p>If dont have an Account? <Link to="/signup">Create Account</Link></p>

@@ -4,7 +4,6 @@ import {
     deleteUser, 
     getAllUsers, 
     getSingleUser, 
-    getSingleUserByEmail, 
     updateUser
 } from '../Controllers/userController.js'
 
@@ -18,9 +17,6 @@ router.get('/', getAllUsers)
 
 //Get a single blog
 router.get('/:id', getSingleUser)
-
-//Get a user by EMail
-router.get('/:email', getSingleUserByEmail)
 
 //create new blog
 router.post('/', RegisterUSer);

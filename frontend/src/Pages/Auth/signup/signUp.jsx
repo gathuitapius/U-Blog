@@ -17,13 +17,9 @@ export const SignUp = () => {
         e.preventDefault()
         
         const user = {userName, email, password}
-        const response = await axios.post("/api/auth", user)
-        // const result = await response
-
-        if(response.status !== 200){
-            setError(response.error)
-        }
-        if(response.status === 200)
+        try {
+        const response = await axios.post('/api/auth/signup', user)
+        if(response.status === 201)
         {
             setUserName("")
             setEmail("")
@@ -32,6 +28,11 @@ export const SignUp = () => {
             console.log(response.data)
             navigate("/login")
         }
+                    
+    } catch (error) {
+        setError(error.response ? error.response.data.mssg : "An unexpected error occurred");
+        console.error(error);  
+    }
 
     }
     return(
@@ -49,7 +50,7 @@ export const SignUp = () => {
             </div>
             <div className="input">
                 <label>Email</label>
-                <input type="text" 
+                <input type="email" 
                 required 
                 placeholder="Enter your Email ..."
                 onChange={(e) => setEmail(e.target.value)}
@@ -66,7 +67,7 @@ export const SignUp = () => {
                 />
             </div>
             <div className="input">
-                <button >SignUp</button>
+                <button type="submit">SignUp</button>
             </div>
             <div className="signup-link">
                 <p>Already have an Account? <Link to="/login">Login</Link></p>

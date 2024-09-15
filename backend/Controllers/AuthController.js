@@ -1,9 +1,6 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const User = require("./models/User");
-
-// Secret key for JWT
-const JWT_SECRET = "your_secret_key_here"; // This should be stored securely
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from "../models/users.js";
 
 
 export const Login = async (req, res) => {
@@ -23,7 +20,7 @@ export const Login = async (req, res) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({UserId: user._id, email: user.email}, JWT_SECRET, {
+        const token = jwt.sign({UserId: user._id, email: user.email}, process.env.JWT_SECRET, {
             expiresIn: '1h'
         });
 
@@ -45,22 +42,21 @@ export const SignUp = async (req, res) => {
         const existingUser = await User.findOne({email});
 
         if(existingUser){
-            res.status(400).json({mssg: "User alredy Exists!"})
+            res.status(400).json({mssg: "User already Exists!"})
+            return
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
         //create user
-        const newUser = await new User({
+        const newUser = await User.create({
             userName,
             email,
             password: hashedPassword
         });
 
         // Save user to database
-        const user = await newUser.save();
         res.status(201).json({mssg: "User registered successfully!"})
-        console.table(user)
         
     } catch (error) {
         console.error(error.message)
