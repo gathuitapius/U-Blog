@@ -31,6 +31,21 @@ export const getSingleUser = async (req, res) => {
     res.status(200).json(user);
 
 }
+
+//get user by email
+export const getSingleUserByEmail = async (req, res) => {
+    const {email} = req.params
+    const user = await User.find({email});
+    if(!user){
+        return res.status(404).json({mssg:"User not found!"})
+    }
+
+    res.status(200).json(user);
+
+}
+
+
+
 //CREATE a Blog
 
 export const RegisterUSer = async ( req, res ) =>{

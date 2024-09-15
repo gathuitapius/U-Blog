@@ -14,14 +14,16 @@ import { useBlogsContext } from "../../hooks/useBlogsContext";
 const Blog = ({ blog }) =>{
     const { dispatch }  = useBlogsContext()
     const [clicked, setClicked] = useState(false)
+    
+
 
     const handleDelete = async (e) => {
         e.preventDefault()
         const id = blog._id
         try{
-            const blog = await axios.delete(`/api/blogs/${id}`)
-            console.log(blog)
-            if(blog.status === 200){
+            const response = await axios.delete(`/api/blogs/${id}`)
+            console.log(response.data)
+            if(response.status === 200){
                 dispatch(
                     {
                         type: "DELETE_BLOG", payload: blog
@@ -38,7 +40,7 @@ const Blog = ({ blog }) =>{
         setClicked(true)
     }
     return <div className="blog">
-        {clicked && <AddBlog blog={blog}/>}
+        {clicked && <AddBlog blog={blog} setClicked={setClicked} clicked = {clicked}/>}
         <div className="blogImg">
             <img src={blog.blog_image > 0 ? blog.blog_image : blogpic} alt={blog.title ||"Blog pic"}/>
         </div>
