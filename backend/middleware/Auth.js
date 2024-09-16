@@ -1,15 +1,41 @@
-// authMiddleware.js
 import jwt from 'jsonwebtoken';
+import User from '../models/users.js';
 
-export const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+export const requireAuth = (req, res, next) => {
+  const token = req.cookies.jwt;
 
-    if (token == null) return res.sendStatus(401); // If no token, return Unauthorized
-
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403); // If token is invalid, return Forbidden
-        req.user = user;
-        next(); // Proceed to the next middleware or route handler
+  // check json web token exists & is verified
+  if (token) {
+    jwt.verify(token, 'secret', (err, decodedToken) => {
+      if (err) {
+        console.log(err.message);
+        res.redirect('/login');
+      } else {
+        console.log(decodedToken);
+        next();
+      }
     });
+  } else {
+    res.redirect('/login');
+  }
+};
+
+// check current user
+export const checkUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, 'secret', async (err, decodedToken) => {
+      if (err) {
+        res.locals.user = null;
+        next();
+      } else {
+        let user = await User.findById(decodedToken.id);
+        res.locals.user = user;
+        next();
+      }
+    });
+  } else {
+    res.locals.user = null;
+    next();
+  }
 };

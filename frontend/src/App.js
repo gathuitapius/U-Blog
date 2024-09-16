@@ -24,9 +24,7 @@ function App() {
           <Route
           path='/blogs'
           element={
-            <ProtectedRoute>
               <Blogs/>
-            </ProtectedRoute>
         }
           />
           <Route
@@ -36,9 +34,7 @@ function App() {
           <Route
           path='/blog'
           element={
-            <ProtectedRoute>
               <Blog/>
-            </ProtectedRoute>
         }
           />
           <Route

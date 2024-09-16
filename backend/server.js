@@ -5,20 +5,21 @@ import cors from 'cors';
 import userRoute from '../backend/routes/users.js'
 import blogRoute from '../backend/routes/blogs.js'
 import authRoute from '../backend/routes/authenticate.js'
-import {authenticateToken} from '../backend/middleware/Auth.js'
+import {requireAuth, checkUser} from '../backend/middleware/Auth.js'
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const port = process.env.PORT;
 
 //middleware
 app.use(express.json())
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cookieParser());
 
 app.use((req, res, next) =>{console.log(req.path, req.method); next();
 })
 //get 
 app.use('/api/auth', authRoute)
-app.use('/api/blogs', authenticateToken, blogRoute)
+app.use('/api/blogs', requireAuth, blogRoute)
 app.use('/api/users', userRoute)
 
 mongoose.connect('mongodb://0.0.0.0:27017/blogs')

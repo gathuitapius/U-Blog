@@ -1,5 +1,5 @@
 import express from 'express';
-import { Login, SignUp } from '../Controllers/AuthController.js'
+import {Login, logout, SignUp } from '../Controllers/AuthController.js'
 
 
 
@@ -13,6 +13,14 @@ router.post('/login', Login);
 
 //Create user
 router.post('/signup', SignUp);
+
+//logout
+router.post('/logout', logout)
+
+//get logged in user
+  
+
+
 
 
 export default router;

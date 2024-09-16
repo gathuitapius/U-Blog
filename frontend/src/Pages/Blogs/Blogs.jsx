@@ -10,10 +10,12 @@ import { AddBlog } from "../../popUps/Register/AddBlog.jsx"
 
 
 export const Blogs = () => {
+     
     const {blogs, dispatch} = useBlogsContext()
     console.log("Blogs from context:", blogs);
     useEffect(() => {
         const getBlogs = async () => {
+          const token = localStorage.getItem("token");
           try {
             const response = await axios.get("/api/blogs/");
             if(response.status === 200){

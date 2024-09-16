@@ -2,11 +2,20 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from "../models/users.js";
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 dotenv.config();
 
 
+const maxAge = 3 * 24 * 60 * 60;
+const createToken = (id) => {
+    return jwt.sign({id}, 'secretcharacters', {
+        expiresIn: maxAge,
+    })
+} 
+
+
 export const Login = async (req, res) => {
-    const {email, password} = req.body
+    const {email, password} = req.body 
 
     try{
         const user = await User.findOne({email});
@@ -14,17 +23,14 @@ export const Login = async (req, res) => {
         if(!user){
             return res.status(400).json({ message: "Invalid email or password" });
         }
-
         const isMatch = await bcrypt.compare(password, user.password);
 
         if(!isMatch){
             return res.status(400).json({ message: "Invalid email or password" }); 
         }
-
         // Generate JWT token
-        const token = jwt.sign({UserId: user._id, email: user.email}, process.env.JWT_SECRET, {
-            expiresIn: '1h'
-        });
+        const token = createToken(user._id);
+        res.cookie('jwt', token, {maxAge: 3*24*60*60*1000});
 
         // Return token to client
         res.json({token, mssg: "Login Successful"})
@@ -38,26 +44,22 @@ export const Login = async (req, res) => {
 
 
 export const SignUp = async (req, res) => {
+
     const { email, password, userName } = req.body;
     try {
-
         const existingUser = await User.findOne({email});
-
         if(existingUser){
-            res.status(400).json({mssg: "User already Exists!"})
-            return
+           return res.status(400).json({mssg: "User already Exists!"})
+        
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
         //create user
-        const newUser = await User.create({
-            userName,
-            email,
-            password: hashedPassword
-        });
-
-        // Save user to database
+        const newUser = await User.create({ userName, email, password: hashedPassword });
+        const token = createToken(newUser._id);
+        res.cookie('jwt', token, {maxAge: maxAge*1000});
+    
         res.status(201).json({mssg: "User registered successfully!"})
         
     } catch (error) {
@@ -67,3 +69,17 @@ export const SignUp = async (req, res) => {
     }
 
 }
+
+
+export const logout = (req, res) => {
+        res.cookie('jwt', '', { maxAge: 1 });
+        res.redirect('/');
+      }
+
+// export const LoggedInUSer = async (req, res) => {
+//     if (res.locals.user) {
+//       res.status(200).json({ user: res.locals.user });
+//     } else {
+//       res.status(401).json({ mssg: 'Not logged in' });
+//     }
+// }

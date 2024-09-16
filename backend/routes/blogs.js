@@ -1,10 +1,10 @@
 import express from 'express';
 import {createBlog, deleteAllBlogs, deleteBlog, getAllBlogs, getSingleBlog, updateBlog} from '../Controllers/blogController.js'
-
+import { requireAuth, checkUser } from '../middleware/Auth.js'
 
 const router = express.Router();
 
-
+router.get('*', checkUser)
 //Get all Blogs
 router.get('/', getAllBlogs)
 
