@@ -110,6 +110,9 @@ U-blog/
 - [ ] Push to the branch (git push origin feature/your-feature).
 - [ ] Open a pull request.
 
+> [!IMPORTANT]
+> Make sure you have mongo DB installed locally or use it online.
+
 ## License
 This project is licensed under the MIT License. See the (LICENSE) file for more details.
 
