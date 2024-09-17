@@ -20,8 +20,8 @@ Icons: Material-UI
 
 ##Installation & Setup
 #Clone the repository:
-git clone https://github.com/yourusername/U-blog.git
-cd U-blog
+git clone https://github.com/gathuitapius/U-Blog.git
+cd U-Blog
 
 ##Install dependencies for both the client and server:
 #Server Setup:
