@@ -106,10 +106,10 @@ U-blog/
 ## Contributing
 # Fork this repository:
 ```
-Create a new branch (git checkout -b feature/your-feature).
-Commit your changes (git commit -m 'Add a new feature').
-Push to the branch (git push origin feature/your-feature).
-Open a pull request.
+- [*] Create a new branch (git checkout -b feature/your-feature).
+- [] Commit your changes (git commit -m 'Add a new feature').
+- [] Push to the branch (git push origin feature/your-feature).
+- [] Open a pull request.
 ```
 
 ## License
