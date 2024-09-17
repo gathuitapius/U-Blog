@@ -6,31 +6,41 @@ It allows users to create, read, comment on blog posts, and interact with conten
 It also supports user authentication for secure access.
 
 # Features
+```
 User Authentication: Login and registration via JWT.
 Blog Management: Users can create, update, and delete blog posts.
 Comment System: Users can leave and view comments on blog posts.
 Dynamic Data: Real-time updates using Axios for API communication.
+```
 
 # Technology Stack
+```
 Frontend: React.js, CSS, SASS
 Backend: Node.js, Express.js, MongoDB, Mongoose
 Authentication: JWT (JSON Web Token)
 API Communication: Axios
 Icons: Material-UI
+```
 
 # Installation & Setup
 ## Clone the repository:
+```
 git clone https://github.com/gathuitapius/U-Blog.git
 cd U-Blog
+```
 
 # Install dependencies for both the client and server:
 ## Server Setup:
+```
 cd backend
 npm install
+```
 
 # Client Setup:
+```
 cd frontend
 npm install
+```
 
 # Create a .env file in the backend directory:
 PORT=4000
