@@ -105,12 +105,10 @@ U-blog/
 
 ## Contributing
 # Fork this repository:
-```
 - [x] Create a new branch (git checkout -b feature/your-feature).
 - [ ] Commit your changes (git commit -m 'Add a new feature').
 - [ ] Push to the branch (git push origin feature/your-feature).
 - [ ] Open a pull request.
-```
 
 ## License
 This project is licensed under the MIT License. See the (LICENSE) file for more details.
