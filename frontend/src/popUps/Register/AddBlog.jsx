@@ -1,5 +1,4 @@
 import "./AddBlog.sass"
-import TextEditor from "../../components/TextEditor.jsx"
 export const AddBlog = ({blog, clicked, setClicked}) => {
     return <div className="register">
         <div className="close">

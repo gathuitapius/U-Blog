@@ -75,11 +75,3 @@ export const logout = (req, res) => {
         res.cookie('jwt', '', { maxAge: 1 });
         res.redirect('/');
       }
-
-// export const LoggedInUSer = async (req, res) => {
-//     if (res.locals.user) {
-//       res.status(200).json({ user: res.locals.user });
-//     } else {
-//       res.status(401).json({ mssg: 'Not logged in' });
-//     }
-// }

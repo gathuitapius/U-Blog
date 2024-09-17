@@ -5,10 +5,10 @@ import { Navbar } from './components/Navbar/Navbar.jsx';
 import { Footer } from './components/Footer/Footer.jsx';
 import { Blogs } from './Pages/Blogs/Blogs.jsx';
 import { About } from './Pages/About/About.jsx';
-import Blog from './Pages/BlogPage/Blog.jsx';
+import {Blog} from './Pages/BlogPage/Blog.jsx';
 import { Login } from './Pages/Auth/Login/Login.jsx';
 import { SignUp } from './Pages/Auth/signup/signUp.jsx';
-import  ProtectedRoute from './components/ProtectedRoute.jsx';
+// import  ProtectedRoute from './components/ProtectedRoute.jsx';
 
 function App() {
   return (
@@ -31,12 +31,12 @@ function App() {
           path='/about'
           element={<About/>}
           />
-          <Route
+          {/* <Route
           path='/blog'
           element={
               <Blog/>
         }
-          />
+          /> */}
           <Route
           path='/signup'
           element={<SignUp/>}
@@ -45,7 +45,10 @@ function App() {
           path='/login'
           element={<Login/>}
           />
-          
+          <Route
+          path='/blog/:id'
+          element={<Blog/>}
+          />
           
         </Routes>
 

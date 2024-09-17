@@ -5,7 +5,8 @@ import cors from 'cors';
 import userRoute from '../backend/routes/users.js'
 import blogRoute from '../backend/routes/blogs.js'
 import authRoute from '../backend/routes/authenticate.js'
-import {requireAuth, checkUser} from '../backend/middleware/Auth.js'
+import commentsRoute from './routes/comment.js';
+import {requireAuth} from '../backend/middleware/Auth.js'
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -19,8 +20,9 @@ app.use((req, res, next) =>{console.log(req.path, req.method); next();
 })
 //get 
 app.use('/api/auth', authRoute)
-app.use('/api/blogs', requireAuth, blogRoute)
+app.use('/api/blogs', blogRoute)
 app.use('/api/users', userRoute)
+app.use('/api/blogs/blog', commentsRoute)
 
 mongoose.connect('mongodb://0.0.0.0:27017/blogs')
 .then(() => {

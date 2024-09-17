@@ -6,6 +6,7 @@ import { useBlogsContext } from "../../hooks/useBlogsContext.jsx"
 
 import AddIcon from '@mui/icons-material/Add';
 import { AddBlog } from "../../popUps/Register/AddBlog.jsx"
+import { Link } from "react-router-dom"
 
 
 
@@ -28,7 +29,11 @@ export const Blogs = () => {
       }, [dispatch]);
 
     return <div className="blogs">
-        {blogs && blogs.length > 0 ? (blogs.map((blog) =>(<Blog key={blog._id} blog={blog}/>))
+        {blogs && blogs.length > 0 ? (blogs.map((blog) =>(
+          <Link to={`/blog/${blog._id}`}>
+            <Blog key={blog._id} blog={blog}/>
+          </Link>
+        ))
     ) : (
         <p>No Blogs to Show</p>
     )}

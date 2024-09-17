@@ -10,7 +10,7 @@ router.get('/', getAllBlogs)
 
 
 //Get a single blog
-router.get('/:id', getSingleBlog)
+router.get('/blog/:id', getSingleBlog)
 
 //create new blog
 router.post('/', createBlog);

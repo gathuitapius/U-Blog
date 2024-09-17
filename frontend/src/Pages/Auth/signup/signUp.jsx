@@ -27,7 +27,7 @@ export const SignUp = () => {
             setPassword("")
             setError(null)
             console.log(response.data)
-            navigate("/login")
+            navigate("/")
         }
         console.log(response)
                     
