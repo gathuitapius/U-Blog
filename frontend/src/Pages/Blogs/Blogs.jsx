@@ -6,7 +6,8 @@ import { useBlogsContext } from "../../hooks/useBlogsContext.jsx"
 
 import AddIcon from '@mui/icons-material/Add';
 import { AddBlog } from "../../popUps/Register/AddBlog.jsx"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 
@@ -29,6 +30,9 @@ export const Blogs = () => {
       }, [dispatch]);
 
     return <div className="blogs">
+      <Link to="/newblog">
+        <AddCircleOutlineIcon className="add-blog"/>
+      </Link>
         {blogs && blogs.length > 0 ? (blogs.map((blog) =>(
           <Link to={`/blog/${blog._id}`}>
             <Blog key={blog._id} blog={blog}/>

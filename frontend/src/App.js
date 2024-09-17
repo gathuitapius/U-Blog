@@ -8,7 +8,8 @@ import { About } from './Pages/About/About.jsx';
 import {Blog} from './Pages/BlogPage/Blog.jsx';
 import { Login } from './Pages/Auth/Login/Login.jsx';
 import { SignUp } from './Pages/Auth/signup/signUp.jsx';
-// import  ProtectedRoute from './components/ProtectedRoute.jsx';
+import {NewBlog} from './Pages/AddBlog/NewBlog.jsx'
+
 
 function App() {
   return (
@@ -31,12 +32,12 @@ function App() {
           path='/about'
           element={<About/>}
           />
-          {/* <Route
-          path='/blog'
+          <Route
+          path='/newblog'
           element={
-              <Blog/>
+              <NewBlog/>
         }
-          /> */}
+          />
           <Route
           path='/signup'
           element={<SignUp/>}

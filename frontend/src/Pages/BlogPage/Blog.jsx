@@ -39,7 +39,7 @@ export const Blog = () => {
         const fetchComments = async () => {
           try {
             const response = await axios.get(`/api/blogs/blog/${id}/comments`);
-            setComment(response.data);
+            setComment(response.data.slice(0,10));
             console.log(response.data)
           } catch (err) {
             setError(err.message);
@@ -88,22 +88,7 @@ export const Blog = () => {
         <div className="commentsTitle">
         <h2>Comments</h2>
         </div>
-        {/* <div className="comments">
-          {comment && comment.map((chat) =>(
-            <div  key={chat._id} className="comment">
-                <div className="commentMetaData">
-                <p>@username</p>
-                <div className="timestamp">
-                <p>{new Date(chat.createdAt).toLocaleTimeString()}</p>
-                <p>{new Date(chat.createdAt).toLocaleDateString()}</p>
-                </div>
-                </div>
-                <div className="commentMessage">
-                    <p>{chat.chat}</p>
-                </div>
-
-            </div>
-        ))} */}
+        
         {comment && comment.map((chat) => (
 
         <Comment 
@@ -115,14 +100,14 @@ export const Blog = () => {
         />
         ))
         }
-            <div className="inputcomment">
-                    <textarea 
-                    type="text" 
-                    placeholder="Enter Comment..."
-                    onChange={(e) => setChat(e.target.value)}
-                    />
-                    <SendRoundedIcon className="send" onClick={handleComment}/>
-                </div>
+        <div className="inputcomment">
+            <textarea 
+            type="text" 
+            placeholder="Enter Comment..."
+            onChange={(e) => setChat(e.target.value)}
+            />
+            <SendRoundedIcon className="send" onClick={handleComment}/>
+        </div>
         </div>
     // </div>
 }
