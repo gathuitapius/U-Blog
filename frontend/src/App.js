@@ -9,6 +9,7 @@ import {Blog} from './Pages/BlogPage/Blog.jsx';
 import { Login } from './Pages/Auth/Login/Login.jsx';
 import { SignUp } from './Pages/Auth/signup/signUp.jsx';
 import {NewBlog} from './Pages/AddBlog/NewBlog.jsx'
+import { UpdateBlog } from './Pages/UpdateBlog/blog.jsx';
 
 
 function App() {
@@ -36,6 +37,12 @@ function App() {
           path='/newblog'
           element={
               <NewBlog/>
+        }
+          />
+          <Route
+          path='/updateblog/:id'
+          element={
+              <UpdateBlog/>
         }
           />
           <Route

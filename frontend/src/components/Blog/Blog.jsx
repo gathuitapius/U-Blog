@@ -35,10 +35,6 @@ const Blog = ({ blog }) =>{
         }
     }
 
-    const handleEdit = async (e) => {
-        e.preventDefault()
-        setClicked(true)
-    }
     return <div className="blog">
         {clicked && <AddBlog blog={blog} setClicked={setClicked} clicked = {clicked}/>}
         <div className="blogImg">
@@ -54,10 +50,11 @@ const Blog = ({ blog }) =>{
             className="icon-del"
             onClick={handleDelete}
             />
+            <Link to={`/updateblog/${blog._id}`}>
             <ModeEditIcon
             className="icon-edit"
-            onClick={handleEdit}
             />
+            </Link>
         </div>
     </div>
 }
