@@ -46,7 +46,7 @@ const Blog = ({ blog }) =>{
         </div>
         <div className="blogSummary">
             <h2>{blog.title}</h2>
-            <p>{blog.content}</p>
+            <p>{blog.content.slice(0, 300)}...</p>
                   <button><Link to="/blog">Read More..</Link></button>
         </div>
         <div className="actions">

@@ -1,5 +1,5 @@
 import './Comment.sass';
-export const Comment = ({comment,handleComment, setChat}) => {
+export const Comment = ({comment}) => {
     return(
         <div className="comments">
           {comment && comment.map((chat) =>(

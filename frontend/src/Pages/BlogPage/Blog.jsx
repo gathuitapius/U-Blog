@@ -14,7 +14,7 @@ export const Blog = () => {
     const [comment, setComment] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [chat, setChat] = useState(null);
+    const [chat, setChat] = useState([]);
     const {blogId} = useParams()
     const navigate = useNavigate()
 
@@ -61,7 +61,7 @@ export const Blog = () => {
           const comment = await axios.post(`/api/blogs/blog/${id}/comments`,{blogId, chat, userName: "Current User"} );
           setComment((prevComments) => [...prevComments, comment.data]);
           setChat(''); // Clear the input field
-          navigate(`/blog/${id}`)
+          // navigate(`/blog/${id}`)
 
         } catch (error) {
           console.log(error.message);
@@ -70,11 +70,11 @@ export const Blog = () => {
       }
 
     return <div className="singleBlog">
+        { blog &&
+        <div className="content">
         <div className="blogthumnail">
             <img src={thump} alt="Thumpnail"/>
         </div>
-        { blog &&
-        <div className="content">
             <h3>{blog.title}</h3>
             <article>
                 <p>
