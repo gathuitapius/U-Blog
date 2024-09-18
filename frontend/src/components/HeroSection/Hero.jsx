@@ -11,7 +11,7 @@ export const Hero = () => {
                 content that sparks your curiosity and fuels your <br/>
                 passion</p>
 
-            <button>Get started</button>
+            <button> <Link to="/blogs">Get started</Link></button>
             <div className="auth">
                 <button><Link to="/login">Login</Link></button>
                 <button><Link to="/signup">Sign Up</Link></button>

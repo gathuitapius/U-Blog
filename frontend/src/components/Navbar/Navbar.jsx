@@ -38,7 +38,6 @@ export const Navbar = () => {
     </div>
     <div className="userprofile">
         <AccountCircleRoundedIcon className='avater'/>
-        <h3>Hello, User</h3>
         <LogoutIcon className='logout' onClick ={handloLogOut}/>
     </div>
   

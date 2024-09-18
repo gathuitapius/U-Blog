@@ -130,8 +130,8 @@ export const About = () => {
                         </p>
                     </div>
                 </div>
-            <div className="journey">
             <h3>Join Us on This Journey</h3>
+            <div className="journey">
             <p>
             We're excited to have you as part of our community! Whether you're a regular reader or a
             first-time visitor, we invite you to explore our blog, leave comments, and share your thoughts.

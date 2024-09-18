@@ -13,7 +13,7 @@ router.get('/', getAllBlogs)
 router.get('/blog/:id', getSingleBlog)
 
 //create new blog
-router.post('/', createBlog);
+router.post('/newblog', createBlog);
 
 //create new blog
 router.put('/:id', updateBlog)

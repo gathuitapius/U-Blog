@@ -1,175 +1,105 @@
-// import { useState } from 'react'
-// import './NewBlog.sass'
-// import axios from 'axios';
-// export const NewBlog = () => {
-//     const [title, setTitle] = useState('');
-//     const [blogImg, setBlogImg] = useState(null);
-//     const [content, setContent] = useState('');
-
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-
-//         if(!title || !content){
-//             console.log("Title or Content cant be empty!")
-//         }
-//         // Create a new FormData object
-//         const formData = new FormData();
-//         formData.append('title', title);
-//         formData.append('blogImg', blogImg); // Append the selected file
-//         formData.append('content', content);
-
-//         try {
-//             const response = await axios.post('/api/blogs/', formData,
-//                 {
-//                     headers: {
-//                         'Content-Type': 'multipart/form-data', // Necessary for file uploads
-//                     },
-//                 });
-//             console.log(response);
-//             console.log(formData)
-//         } catch (error) {
-//             console.log(error.message)
-            
-//         }
-
-//     }
-
-//     return(
-//         <div className="new-blog">
-//             <h2>Add New Blog</h2>
-//             <form onSubmit={handleSubmit}>
-//                 <div className="input">
-//                     <label>Title</label>
-//                     <input type='text' 
-//                     required 
-//                     placeholder='Enter Blog title'
-//                     onChange={(e) => setTitle(e.target.value)}
-//                     />
-//                 </div>
-//                 <div className="input">
-//                     <label>Image</label>
-//                     <input type="file" 
-//                     onChange={(e) => setBlogImg(e.target.files[0])}
-//                     accept="image/*"/>
-//                 </div>
-//                 <div className="input">
-//                     <label htmlFor="content">Content</label>
-//                     <textarea 
-//                     name="content" 
-//                     id="content"
-//                     placeholder='Write your Blog here...'
-//                     onChange={(e) => setContent(e.target.value)}
-//                     >
-//                     </textarea>
-//                 </div>
-//                 <button type='submit'>Add Blog</button>
-//             </form>
-//         </div>
-//     )
-// }
-
-
-
-import { useState } from 'react';
-import './NewBlog.sass';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import './NewBlog.sass'
 import axios from 'axios';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import {
+//   ClassicEditor,
+//   Bold,
+//   Essentials,
+//   Heading,
+//   Indent,
+//   IndentBlock,
+//   Italic,
+//   Link,
+//   List,
+//   MediaEmbed,
+//   Paragraph,
+//   Table,
+//   Undo
+// } from 'ckeditor5';
 
 export const NewBlog = () => {
     const [title, setTitle] = useState('');
-    const [blogImg, setBlogImg] = useState(null);
+    const [blog_image, setBlogimg] = useState('imga.png')
     const [content, setContent] = useState('');
-    const [loading, setLoading] = useState(false); // For handling form submission state
-    const [error, setError] = useState(''); // To handle error messages
-    const [success, setSuccess] = useState(''); // To show success message
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        console.log(title)
         
-        // Clear previous error or success messages
-        setError('');
-        setSuccess('');
-
-        if (!title || !content) {
-            setError("Title or content can't be empty!");
-            return;
-        }
-
-        // Create a new FormData object
-        // const formData = new FormData();
-        // formData.append('title', title);
-        // //formData.append('blogImg', blogImg); // Append the selected file
-        // formData.append('content', content);
-        const blog = {title, content}
-
-        setLoading(true); // Start loading before the request
-
         try {
-            const response = await axios.post('/api/blogs/', blog, {
-                headers: {
-                    'Content-Type': 'multipart/form-data', // Necessary for file uploads
-                },
-            });
+            const response = await axios.post('/api/blogs/newblog', {title, blog_image , content})
             console.log(response);
-            console.log(blog);
-
-            // Success: Set success message and reset form
-            setSuccess('Blog added successfully!');
-            setTitle('');
-            setContent('');
-            setBlogImg(null);
+            console.log(title, content)
+            navigate('/blogs')
 
         } catch (error) {
-            console.log(error.message);
-            setError('Failed to add blog. Please try again.');
-        } finally {
-            setLoading(false); // Stop loading once the request finishes
+            console.log(error.message)
+            alert(error)  
         }
-    };
-
+    }
     return (
         <div className="new-blog">
             <h2>Add New Blog</h2>
-
-            {error && <p className="error">{error}</p>}
-            {success && <p className="success">{success}</p>}
-
             <form onSubmit={handleSubmit}>
                 <div className="input">
                     <label>Title</label>
-                    <input 
-                        type='text' 
-                        required 
-                        placeholder='Enter Blog title'
-                        value={title} 
-                        onChange={(e) => setTitle(e.target.value)} 
+                    <input type='text' 
+                    required 
+                    placeholder='Enter Blog title'
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
-
                 <div className="input">
                     <label>Image</label>
-                    <input 
-                        type="file" 
-                        onChange={(e) => setBlogImg(e.target.files[0])} 
-                        accept="image/*" 
+                    <input type='text' 
+                    required 
+                    placeholder='Enter Blog image'
+                    value={blog_image}
+                    onChange={(e) => setBlogimg(e.target.value)}
                     />
                 </div>
-
                 <div className="input">
-                    <label htmlFor="content">Content</label>
-                    <textarea 
-                        name="content" 
-                        id="content" 
-                        placeholder='Write your Blog here...' 
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)} 
-                    ></textarea>
+                    <label>Content</label>
+                    <textarea cols='50' rows='10' type='text' 
+                    required 
+                    placeholder='Enter Blog Content'
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    />
                 </div>
-
-                <button type='submit' disabled={loading}>
-                    {loading ? 'Submitting...' : 'Add Blog'}
-                </button>
+                {/* <CKEditor
+      editor={ ClassicEditor }
+      config={ {
+        toolbar: [
+          'undo', 'redo', '|',
+          'heading', '|', 'bold', 'italic', '|',
+          'link', 'insertTable', 'mediaEmbed', '|',
+          'bulletedList', 'numberedList', 'indent', 'outdent'
+        ],
+        plugins: [
+          Bold,
+          Essentials,
+          Heading,
+          Indent,
+          IndentBlock,
+          Italic,
+          Link,
+          List,
+          MediaEmbed,
+          Paragraph,
+          Table,
+          Undo
+        ],
+        initialData: '<h1>Hello from CKEditor 5!</h1>',
+      } }
+    /> */}
+                <button type='submit'>Add Blog</button>
             </form>
         </div>
-    );
-};
+    )
+}
