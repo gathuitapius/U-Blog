@@ -1,10 +1,8 @@
 import express from 'express';
 import {
     RegisterUSer, 
-    deleteUser, 
     getAllUsers, 
     getSingleUser, 
-    updateUser
 } from '../Controllers/userController.js'
 
 
@@ -20,12 +18,6 @@ router.get('/:id', getSingleUser)
 
 //create new blog
 router.post('/', RegisterUSer);
-
-//create new blog
-router.put('/:id', updateUser)
-
-//delete blog
-router.delete('/:id', deleteUser)
 
 
 export default router;

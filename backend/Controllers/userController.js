@@ -47,38 +47,3 @@ export const RegisterUSer = async ( req, res ) =>{
         res.status(400).json({error: error.message})
     }
 }
-
-//Update Blog
-export const updateUser = async (req, res) => {
-    const { id } = req.params
-    if(!mongoose.Types.ObjectId.isValid(id)){
-            return res.status(404).json({mssg:"Invalid user ID"})
-        }
-    try{
-    const user = await User.findByIdAndUpdate(id, {...req.body},{new:true})
-    if(!user){ return res.status(404).json({mssg: "user not found"});}
-    res.status(200).json(user)
-    } catch(error) {
-        return res.status(400).json({error: error.message})
-    }
-
-}
-
-//DELETE a user
-export const deleteUser = async (req, res) => {
-    const {id} = req.params
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({mssg:"Invalid user ID"})
-    }
-    try{
-    const user = await User.findOneAndDelete(id)
-
-    if (!user) {
-        return res.status(404).json({ mssg: "user not found" });
-    }
-    return res.status(200).json(user)
-
-    } catch(error) {
-     return res.status(400).json({error: error.message})   
-    }
-}
